@@ -1,6 +1,7 @@
 import "./App.css";
 import * as api from "./services/BooksAPI";
 import React, { useState, useEffect } from "react";
+import SelectButton from "./components/select-button/select-button";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -9,6 +10,7 @@ function App() {
     { Id: "currentlyReading", Title: "Currently Reading" },
     { Id: "wantToRead", Title: "Want to Read" },
     { Id: "read", Title: "Read" },
+    { Id: "none", Title: "None" },
   ];
 
   useEffect(() => {
@@ -18,16 +20,7 @@ function App() {
   return (
     <div>
       <h1>My Reads</h1>
-      {shelfs.map((shelf) => (
-        <div key={shelf.Title}>
-          <strong>{shelf.Title}</strong>
-          {books
-            .filter((book) => book.shelf === shelf.Id)
-            .map((book) => (
-              <span key={book.title}>{book.title}</span>
-            ))}
-        </div>
-      ))}
+      <SelectButton shelfs={shelfs}></SelectButton>
     </div>
   );
 }
