@@ -1,7 +1,7 @@
 import "./App.css";
 import * as api from "./services/BooksAPI";
 import React, { useState, useEffect } from "react";
-import SelectButton from "./components/select-button/select-button";
+import Shelf from "./components/shelf/shelf";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -15,12 +15,13 @@ function App() {
 
   useEffect(() => {
     api.getAll().then((data) => setBooks(data));
+    console.log(books);
   }, []);
 
   return (
     <div>
       <h1>My Reads</h1>
-      <SelectButton shelfs={shelfs}></SelectButton>
+      <Shelf shelfs={shelfs} books={books}></Shelf>
     </div>
   );
 }
