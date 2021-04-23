@@ -1,4 +1,4 @@
-import SelectButtonItem from "../select-button-item/select-button-item";
+import SelectButtonItem from "./select-button-item/select-button-item";
 import "./select-button.css";
 import React, { useState } from "react";
 
