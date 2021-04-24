@@ -1,7 +1,7 @@
 import "./App.css";
 import * as api from "./services/BooksAPI";
 import React, { useState, useEffect } from "react";
-import Shelf from "./components/shelf/shelf";
+import ShelfList from "./components/shelf-list/shelf-list";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       <h1>My Reads</h1>
-      <Shelf shelfs={shelfs} books={books}></Shelf>
+      <ShelfList shelfs={shelfs} books={books}></ShelfList>
     </div>
   );
 }
