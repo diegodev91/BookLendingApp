@@ -2,7 +2,7 @@ import SelectButtonItem from "./select-button-item/select-button-item";
 import "./select-button.css";
 import React, { useState } from "react";
 
-export default function SelectButton({ shelfs }) {
+export default function SelectButton({ shelfs, currentShelf }) {
   const [visibility, toogleVisibility] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
 
@@ -18,7 +18,7 @@ export default function SelectButton({ shelfs }) {
         className={!visibility ? "hidden" : ""}
         onBlur={() => toogleVisibility(!visibility)}
         onChange={(e) => setSelectedValue(e.target.value)}
-        value={selectedValue}
+        value={currentShelf}
       >
         <SelectButtonItem
           disabled={true}

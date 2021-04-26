@@ -10,7 +10,7 @@ export default function Book({ shelfs, book }) {
       {book.authors.map((author) => (
         <h6 key={author}>{author}</h6>
       ))}
-      <SelectButton shelfs={shelfs}></SelectButton>
+      <SelectButton shelfs={shelfs} currentShelf={book.shelf}></SelectButton>
     </div>
   );
 }
