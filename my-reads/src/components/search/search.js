@@ -12,7 +12,11 @@ export default function Search({ shelfs, books, onSearchChanged }) {
     <div>
       <BackButton></BackButton>
       <InputSearch onTextChange={handleTextChanged}></InputSearch>
-      <Shelf shelfs={shelfs} books={books}></Shelf>
+      {books && books.length ? (
+        <Shelf shelfs={shelfs} books={books}></Shelf>
+      ) : (
+        <span>Empty search...</span>
+      )}
     </div>
   );
 }
