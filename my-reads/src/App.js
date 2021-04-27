@@ -19,12 +19,10 @@ function App() {
 
   const handleSearchChanged = (text) => {
     api.search(text).then((data) => setBookFromSearch(data));
-    console.log(booksFromSearch);
   };
 
   useEffect(() => {
     api.getAll().then((data) => setBooks(data));
-    api.search().then((data) => setBookFromSearch(data));
   }, []);
 
   return (
@@ -47,7 +45,12 @@ function App() {
           render={() => (
             <div>
               <h1>My Reads</h1>
-              <ShelfList shelfs={shelfs} books={books}></ShelfList>
+              {books.length ? (
+                <ShelfList shelfs={shelfs} books={books}></ShelfList>
+              ) : (
+                <span>Loading books...</span>
+              )}
+
               <SearchButton></SearchButton>
             </div>
           )}
