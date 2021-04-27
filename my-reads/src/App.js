@@ -8,6 +8,7 @@ import Search from "./components/search/search";
 
 function App() {
   const [books, setBooks] = useState([]);
+  const [booksFromSearch, setBookFromSearch] = useState([]);
 
   const shelfs = [
     { Id: "currentlyReading", Title: "Currently Reading" },
@@ -16,9 +17,14 @@ function App() {
     { Id: "none", Title: "None" },
   ];
 
+  const handleSearchChanged = (text) => {
+    api.search(text).then((data) => setBookFromSearch(data));
+    console.log(booksFromSearch);
+  };
+
   useEffect(() => {
     api.getAll().then((data) => setBooks(data));
-    console.log(books);
+    api.search().then((data) => setBookFromSearch(data));
   }, []);
 
   return (
@@ -27,7 +33,13 @@ function App() {
         <Route
           exact
           path="/search"
-          render={() => <Search shelfs={shelfs} books={books}></Search>}
+          render={() => (
+            <Search
+              shelfs={shelfs}
+              books={booksFromSearch}
+              onSearchChanged={handleSearchChanged}
+            ></Search>
+          )}
         ></Route>
         <Route
           exact
