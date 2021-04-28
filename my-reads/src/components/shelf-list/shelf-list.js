@@ -2,7 +2,7 @@ import "./shelf-list.css";
 import React from "react";
 import Shelf from "../shelf/shelf";
 
-export default function ShelfList({ shelfs, books }) {
+export default function ShelfList({ shelfs, books, onBookStatusChanged }) {
   return (
     <div>
       {books &&
@@ -14,6 +14,7 @@ export default function ShelfList({ shelfs, books }) {
               <Shelf
                 shelfs={shelfs}
                 books={books.filter((book) => book.shelf === shelf.Id)}
+                onBookStatusChanged={onBookStatusChanged}
               ></Shelf>
             </div>
           ))}
