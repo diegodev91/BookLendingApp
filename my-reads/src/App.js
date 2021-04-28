@@ -18,11 +18,23 @@ function App() {
   ];
 
   const handleSearchChanged = (text) => {
-    api.search(text).then((data) => setBookFromSearch(data));
+    api.search(text).then((data) => {
+      setBookFromSearch(data);
+      console.log(data);
+    });
+  };
+
+  const handleBookStatusChanged = (book, shelf) => {
+    api
+      .update(book, shelf)
+      .then(({ currentlyReading, wantToRead, read }) => {});
   };
 
   useEffect(() => {
-    api.getAll().then((data) => setBooks(data));
+    api.getAll().then((data) => {
+      setBooks(data);
+      console.log(data);
+    });
   }, []);
 
   return (
@@ -36,6 +48,7 @@ function App() {
               shelfs={shelfs}
               books={booksFromSearch}
               onSearchChanged={handleSearchChanged}
+              onBookStatusChanged={handleBookStatusChanged}
             ></Search>
           )}
         ></Route>
@@ -46,7 +59,11 @@ function App() {
             <div>
               <h1>My Reads</h1>
               {books.length ? (
-                <ShelfList shelfs={shelfs} books={books}></ShelfList>
+                <ShelfList
+                  shelfs={shelfs}
+                  books={books}
+                  onBookStatusChanged={handleBookStatusChanged}
+                ></ShelfList>
               ) : (
                 <span>Loading books...</span>
               )}

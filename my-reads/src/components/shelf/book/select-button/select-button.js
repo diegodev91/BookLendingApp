@@ -2,9 +2,19 @@ import SelectButtonItem from "./select-button-item/select-button-item";
 import "./select-button.css";
 import React, { useState } from "react";
 
-export default function SelectButton({ shelfs, currentShelf }) {
+export default function SelectButton({
+  shelfs,
+  currentShelf,
+  onBookStatusChanged,
+}) {
   const [visibility, toogleVisibility] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
+
+  const BookStatusChanged = (e) => {
+    setSelectedValue(e.target.value);
+    console.log(selectedValue);
+    onBookStatusChanged(e.target.value);
+  };
 
   return (
     <div>
@@ -17,7 +27,7 @@ export default function SelectButton({ shelfs, currentShelf }) {
       <select
         className={!visibility ? "hidden" : ""}
         onBlur={() => toogleVisibility(!visibility)}
-        onChange={(e) => setSelectedValue(e.target.value)}
+        onChange={BookStatusChanged}
         value={currentShelf}
       >
         <SelectButtonItem
