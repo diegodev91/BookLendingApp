@@ -7,33 +7,27 @@ import { Switch, Route } from "react-router-dom";
 import Search from "./components/search/search";
 
 function App() {
-  const [books, setBooks] = useState([]);
-  const [booksFromSearch, setBookFromSearch] = useState([]);
-
-  const shelfs = [
-    { Id: "currentlyReading", Title: "Currently Reading" },
-    { Id: "wantToRead", Title: "Want to Read" },
-    { Id: "read", Title: "Read" },
-    { Id: "none", Title: "None" },
-  ];
-
-  const handleSearchChanged = (text) => {
-    api.search(text).then((data) => {
-      setBookFromSearch(data);
-      console.log(data);
-    });
-  };
+  const [booksOnShelf, setBooksOnShelf] = useState([]);
 
   const handleBookStatusChanged = (book, shelf) => {
-    api
-      .update(book, shelf)
-      .then(({ currentlyReading, wantToRead, read }) => {});
+    api.update(book, shelf).then((data) => {
+      setBooksOnShelf(data);
+    });
   };
 
   useEffect(() => {
     api.getAll().then((data) => {
-      setBooks(data);
-      console.log(data);
+      const shelfs = [...new Set(data.map(({ shelf }) => shelf))];
+
+      const booksInShelf = {};
+
+      for (const shelf of shelfs) {
+        booksInShelf[shelf] = data
+          .filter((book) => book.shelf === shelf)
+          .map((book) => book.id);
+      }
+
+      setBooksOnShelf(booksInShelf);
     });
   }, []);
 
@@ -44,12 +38,7 @@ function App() {
           exact
           path="/search"
           render={() => (
-            <Search
-              shelfs={shelfs}
-              books={booksFromSearch}
-              onSearchChanged={handleSearchChanged}
-              onBookStatusChanged={handleBookStatusChanged}
-            ></Search>
+            <Search onBookStatusChanged={handleBookStatusChanged}></Search>
           )}
         ></Route>
         <Route
@@ -58,10 +47,9 @@ function App() {
           render={() => (
             <div>
               <h1>My Reads</h1>
-              {books.length ? (
+              {booksOnShelf.length ? (
                 <ShelfList
-                  shelfs={shelfs}
-                  books={books}
+                  booksOnShelf={booksOnShelf}
                   onBookStatusChanged={handleBookStatusChanged}
                 ></ShelfList>
               ) : (
