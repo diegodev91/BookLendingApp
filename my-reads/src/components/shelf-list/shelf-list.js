@@ -13,7 +13,7 @@ export default function ShelfList({ booksOnShelf, onBookStatusChanged }) {
   };
   return (
     <div>
-      {["read", "currentlyReading", "wantToRead"].map((shelf) => (
+      {Object.getOwnPropertyNames(booksOnShelf).map((shelf) => (
         <div key={shelf}>
           <h2>{determineShelfTitle(shelf)}</h2>
           <Shelf
