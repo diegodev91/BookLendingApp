@@ -7,7 +7,7 @@ import { Switch, Route } from "react-router-dom";
 import Search from "./components/search/search";
 
 function App() {
-  const [booksOnShelf, setBooksOnShelf] = useState([]);
+  const [booksOnShelf, setBooksOnShelf] = useState({});
 
   const handleBookStatusChanged = (book, shelf) => {
     api.update(book, shelf).then((data) => {
@@ -26,7 +26,6 @@ function App() {
           .filter((book) => book.shelf === shelf)
           .map((book) => book.id);
       }
-
       setBooksOnShelf(booksInShelf);
     });
   }, []);
@@ -47,7 +46,7 @@ function App() {
           render={() => (
             <div>
               <h1>My Reads</h1>
-              {booksOnShelf.length ? (
+              {booksOnShelf ? (
                 <ShelfList
                   booksOnShelf={booksOnShelf}
                   onBookStatusChanged={handleBookStatusChanged}

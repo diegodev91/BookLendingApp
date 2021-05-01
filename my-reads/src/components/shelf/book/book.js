@@ -1,18 +1,18 @@
 import "./book.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SelectButton from "./select-button/select-button";
 import * as api from "../../../services/BooksAPI";
 
 export default function Book({ book, onBookStatusChanged }) {
+  const [bookDetail, setBookDetail] = useState({});
+
   const handleBookStatusChanged = (shelf) => {
     onBookStatusChanged(book, shelf);
   };
 
-  let bookDetail = {};
-
-  useEffect(() => {
+  useEffect((book) => {
     api.get(book).then((data) => {
-      bookDetail = { ...data };
+      setBookDetail(data);
     });
   }, []);
 
