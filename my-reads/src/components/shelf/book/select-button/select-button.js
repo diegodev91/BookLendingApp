@@ -1,10 +1,10 @@
 import SelectButtonItem from "./select-button-item/select-button-item";
 import "./select-button.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { determineShelfTitle } from "../../../../helpers/shelf-utility";
 
 export default function SelectButton({
-  shelfs,
-  currentShelf,
+  currentShelf = "none",
   onBookStatusChanged,
 }) {
   const [visibility, toogleVisibility] = useState(false);
@@ -12,9 +12,17 @@ export default function SelectButton({
 
   const BookStatusChanged = (e) => {
     setSelectedValue(e.target.value);
-    console.log(selectedValue);
     onBookStatusChanged(e.target.value);
   };
+
+  useEffect(() => {
+    let mounted = true;
+    mounted && setSelectedValue(currentShelf);
+
+    return function cleanup() {
+      mounted = false;
+    };
+  }, [currentShelf]);
 
   return (
     <div>
@@ -28,19 +36,19 @@ export default function SelectButton({
         className={!visibility ? "hidden" : ""}
         onBlur={() => toogleVisibility(!visibility)}
         onChange={BookStatusChanged}
-        value={currentShelf}
+        value={selectedValue}
       >
         <SelectButtonItem
           disabled={true}
           value={""}
           text={"Move to..."}
         ></SelectButtonItem>
-        {shelfs.map((x) => (
+        {["currentlyReading", "read", "wantToRead", "none"].map((value) => (
           <SelectButtonItem
-            key={x.Id}
+            key={value}
             disabled={false}
-            value={x.Id}
-            text={x.Title}
+            value={value}
+            text={determineShelfTitle(value)}
           ></SelectButtonItem>
         ))}
       </select>
