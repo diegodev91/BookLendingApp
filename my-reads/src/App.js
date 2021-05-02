@@ -10,7 +10,7 @@ function App() {
   const [booksOnShelf, setBooksOnShelf] = useState({});
 
   const handleBookStatusChanged = (book, shelf) => {
-    api.update(book, shelf).then((data) => {
+    api.update({ id: book }, shelf).then((data) => {
       setBooksOnShelf(data);
     });
   };

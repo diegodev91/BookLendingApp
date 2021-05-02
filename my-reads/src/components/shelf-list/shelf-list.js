@@ -1,16 +1,9 @@
 import "./shelf-list.css";
 import React from "react";
 import Shelf from "../shelf/shelf";
+import { determineShelfTitle } from "../../helpers/shelf-utility";
 
 export default function ShelfList({ booksOnShelf, onBookStatusChanged }) {
-  console.log(booksOnShelf.read);
-  const determineShelfTitle = (shelf) => {
-    return shelf === "read"
-      ? "Read"
-      : shelf === "wantToRead"
-      ? "Want to Read"
-      : "Currently Reading";
-  };
   return (
     <div>
       {Object.getOwnPropertyNames(booksOnShelf).map((shelf) => (

@@ -5,7 +5,7 @@ import BackButton from "./back-button/back-button";
 import { useState } from "react";
 import * as api from "../../services/BooksAPI";
 
-export default function Search({ books, onBookStatusChanged }) {
+export default function Search({ onBookStatusChanged }) {
   const [booksFromSearch, setBookFromSearch] = useState([]);
 
   const handleTextChanged = (text) => {
@@ -19,7 +19,7 @@ export default function Search({ books, onBookStatusChanged }) {
     <div>
       <BackButton></BackButton>
       <InputSearch onTextChange={handleTextChanged}></InputSearch>
-      {books && books.length ? (
+      {booksFromSearch && booksFromSearch.length ? (
         <Shelf
           books={booksFromSearch}
           onBookStatusChanged={onBookStatusChanged}
