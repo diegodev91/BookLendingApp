@@ -11,9 +11,12 @@ export default function Book({ book, onBookStatusChanged }) {
   };
 
   useEffect(() => {
-    api.get(book).then((data) => {
-      setBookDetail(data);
-    });
+    let mounted = true;
+    api.get(book).then((data) => mounted && setBookDetail(data));
+
+    return function cleanup() {
+      mounted = false;
+    };
   }, [book]);
 
   return (

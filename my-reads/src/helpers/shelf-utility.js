@@ -3,5 +3,7 @@ export const determineShelfTitle = (shelf) => {
     ? "Read"
     : shelf === "wantToRead"
     ? "Want to Read"
-    : "Currently Reading";
+    : shelf === "currentlyReading"
+    ? "Currently Reading"
+    : "None";
 };

@@ -10,8 +10,7 @@ export default function Search({ onBookStatusChanged }) {
 
   const handleTextChanged = (text) => {
     api.search(text).then((data) => {
-      setBookFromSearch(data);
-      console.log(data);
+      data && data.length && setBookFromSearch(data.map((book) => book.id));
     });
   };
 
