@@ -22,15 +22,17 @@ export default function Book({ book, onBookStatusChanged }) {
   return (
     <div className={"book"}>
       {bookDetail.imageLinks && (
-        <img src={bookDetail.imageLinks.thumbnail} alt=""></img>
+        <div className="image-container">
+          <img src={bookDetail.imageLinks.thumbnail} alt=""></img>
+          <SelectButton
+            currentShelf={bookDetail.shelf}
+            onBookStatusChanged={handleBookStatusChanged}
+          ></SelectButton>
+        </div>
       )}
       <p>{bookDetail.title}</p>
       {bookDetail.authors &&
-        bookDetail.authors.map((author) => <h6 key={author}>{author}</h6>)}
-      <SelectButton
-        currentShelf={bookDetail.shelf}
-        onBookStatusChanged={handleBookStatusChanged}
-      ></SelectButton>
+        bookDetail.authors.map((author) => <span key={author}>{author}</span>)}
     </div>
   );
 }

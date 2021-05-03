@@ -1,3 +1,22 @@
 .book {
-  width: 300px;
+  margin: 4px;
+  flex: 0 1 calc(14% - 8px); /* <-- adjusting for margin */
+  margin: 20px;
+  padding: 10px;
+}
+
+.image-container > img {
+  width: 160px;
+  height: 250px;
+}
+
+.book > p {
+  padding: 10px 0;
+  font-weight: bold;
+  width: 160px;
+}
+
+.book > span {
+  color: rgb(133, 137, 152);
+  width: 160px;
 }
