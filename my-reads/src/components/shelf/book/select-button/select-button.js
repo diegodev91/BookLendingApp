@@ -25,12 +25,12 @@ export default function SelectButton({
   }, [currentShelf]);
 
   return (
-    <div>
+    <div className="button-container">
       <button
         onClick={() => toogleVisibility(!visibility)}
         className={visibility ? "hidden" : ""}
       >
-        +
+        <i class="arrow down"></i>
       </button>
       <select
         className={!visibility ? "hidden" : ""}
