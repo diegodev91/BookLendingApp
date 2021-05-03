@@ -26,8 +26,9 @@ export default function Book({ book, onBookStatusChanged }) {
       )}
       <p>{bookDetail.title}</p>
       {bookDetail.authors &&
-        bookDetail.authors.map((author) => <h6 key={author}>{author}</h6>)}
+        bookDetail.authors.map((author) => <span key={author}>{author}</span>)}
       <SelectButton
+        className="move-book-button"
         currentShelf={bookDetail.shelf}
         onBookStatusChanged={handleBookStatusChanged}
       ></SelectButton>

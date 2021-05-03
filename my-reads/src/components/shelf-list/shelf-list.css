@@ -1,0 +1,10 @@
+h2 {
+  font-weight: bold;
+  padding-bottom: 5px;
+  border-bottom: solid 1px rgb(230, 230, 230);
+  margin-bottom: 1em;
+}
+
+.shelf-list {
+  padding: 3em 3em 2em 3em;
+}
