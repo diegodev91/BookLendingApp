@@ -15,6 +15,12 @@
   cursor: pointer;
 }
 
+.button-container {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
+}
+
 .arrow {
   border: solid white;
   border-width: 0 2px 2px 0;
