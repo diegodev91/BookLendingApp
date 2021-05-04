@@ -9,8 +9,13 @@ export default function InputSearch({ onTextChange }) {
     setSearchText(event.target.value);
   };
   return (
-    <div>
-      <input type="text" value={searchText} onChange={handleChange}></input>
+    <div className="search-text-container">
+      <input
+        className="search-text"
+        type="text"
+        value={searchText}
+        onChange={handleChange}
+      ></input>
     </div>
   );
 }
