@@ -30,7 +30,7 @@ export default function SelectButton({
         onClick={() => toogleVisibility(!visibility)}
         className={visibility ? "hidden" : ""}
       >
-        <i class="arrow down"></i>
+        <i className="arrow down"></i>
       </button>
       <select
         className={!visibility ? "hidden" : ""}
