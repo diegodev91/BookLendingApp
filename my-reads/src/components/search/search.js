@@ -16,8 +16,10 @@ export default function Search({ onBookStatusChanged }) {
 
   return (
     <div>
-      <BackButton></BackButton>
-      <InputSearch onTextChange={handleTextChanged}></InputSearch>
+      <div className="search-container">
+        <BackButton></BackButton>
+        <InputSearch onTextChange={handleTextChanged}></InputSearch>
+      </div>
       {booksFromSearch && booksFromSearch.length ? (
         <Shelf
           books={booksFromSearch}
