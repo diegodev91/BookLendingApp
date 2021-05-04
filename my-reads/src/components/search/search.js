@@ -9,9 +9,23 @@ export default function Search({ onBookStatusChanged }) {
   const [booksFromSearch, setBookFromSearch] = useState([]);
 
   const handleTextChanged = (text) => {
-    api.search(text).then((data) => {
-      data && data.length && setBookFromSearch(data.map((book) => book.id));
-    });
+    if (text === "") {
+      setBookFromSearch([]);
+      return;
+    }
+    api
+      .search(text)
+      .then((data) => {
+        if (data.error) {
+          setBookFromSearch([]);
+          return;
+        }
+        data && data.length && setBookFromSearch(data.map((book) => book.id));
+      })
+      .catch(function (error) {
+        setBookFromSearch([]);
+        console.log(error);
+      });
   };
 
   return (
