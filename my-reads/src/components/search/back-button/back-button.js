@@ -2,5 +2,5 @@ import "./back-button.css";
 import { Link } from "react-router-dom";
 
 export default function BackButton() {
-  return <Link to="/">back</Link>;
+  return <Link to="/">Back</Link>;
 }
