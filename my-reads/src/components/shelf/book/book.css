@@ -5,6 +5,10 @@
   padding: 10px;
 }
 
+.image-container {
+  position: relative;
+}
+
 .image-container > img {
   width: 160px;
   height: 250px;

@@ -1,0 +1,18 @@
+.search-link {
+  font: bold 28px Arial;
+  text-decoration: none;
+  color: #333333;
+  padding: 15px 6px 2px 8px;
+  border-radius: 50%;
+  background-color: rgb(113, 169, 101);
+  color: white;
+  box-shadow: 2px 2px 3px #999;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
